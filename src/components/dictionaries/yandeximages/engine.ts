@@ -16,9 +16,11 @@ export const getSrcPage: GetSrcPageFunction = text => {
   return `https://yandex.ru/images/search?text=${text}`
 }
 
-export interface VocabularyResult {
+export interface VocabularyResultItem {
   html: HTMLString
 }
+
+export type VocabularyResult = VocabularyResultItem[];
 
 type VocabularySearchResult = DictSearchResult<VocabularyResult>
 
@@ -41,21 +43,27 @@ const HOST = 'https://yandex.ru'
 function handleDOM(
   doc: Document
 ): VocabularySearchResult | Promise<VocabularySearchResult> {
-  
-  const $img = doc.querySelectorAll('.serp-item__thumb')[1];
+  const result: VocabularyResult = [];
+  const $img = doc.querySelectorAll('.serp-item__thumb');
   
   if($img == null) {
     return handleNoResult();
   }
-
-  sanitizeImg($img);
   
-  const html = getOuterHTML(HOST, $img);
-  if (!html) {
-    return handleNoResult()
-  }
+  $img.forEach(img => {
+    sanitizeImg(img);
+  
+    const html = getOuterHTML(HOST, img);
+    if (!html) {
+      return handleNoResult()
+    }
+  
+    result.push({
+      html: html 
+    });
+  })
 
-  return { result: { html } }
+  return { result }
 }
 
 function sanitizeImg<E extends Element>($image: E): E {

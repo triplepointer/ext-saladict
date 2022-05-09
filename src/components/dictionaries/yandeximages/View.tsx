@@ -5,7 +5,9 @@ import { StrElm } from '@/components/StrElm'
 
 export const DictVocabulary: FC<ViewPorps<VocabularyResult>> = ({ result }) => (
   <>
-    <StrElm className="img" html={result.html} />
+    {result.map(el => {
+      return <StrElm className="img" html={el.html} />
+    })}
   </>
 )
 
