@@ -12,6 +12,7 @@ import etymonline from '@/components/dictionaries/etymonline/config'
 import eudic from '@/components/dictionaries/eudic/config'
 import google from '@/components/dictionaries/google/config'
 import googledict from '@/components/dictionaries/googledict/config'
+import yandeximages from '@/components/dictionaries/yandeximages/config'
 import guoyu from '@/components/dictionaries/guoyu/config'
 import hjdict from '@/components/dictionaries/hjdict/config'
 import jikipedia from '@/components/dictionaries/jikipedia/config'
@@ -52,6 +53,7 @@ export const defaultAllDicts = {
   eudic: eudic(),
   google: google(),
   googledict: googledict(),
+  yandeximages: yandeximages(),
   guoyu: guoyu(),
   hjdict: hjdict(),
   jikipedia: jikipedia(),

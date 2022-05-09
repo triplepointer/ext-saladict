@@ -36,8 +36,8 @@ async function main() {
 async function add() {
   let proxyConfig = {}
 
-  if (env.PROXY_HOST) {
-    if (env.PROXY_PROTOCAL && env.PROXY_PROTOCAL.startsWith('socks')) {
+  if (env?.PROXY_HOST) {
+    if (env?.PROXY_PROTOCAL && env?.PROXY_PROTOCAL.startsWith('socks')) {
       const httpsAgent = new SocksProxyAgent(
         `socks5://${env.PROXY_HOST}:${env.PROXY_PORT}`
       )
@@ -55,7 +55,7 @@ async function add() {
     }
   }
 
-  if (env.PROXY_HOST) {
+  if (env?.PROXY_HOST) {
     console.log(
       `with proxy: ${env.PROXY_PROTOCAL}://${env.PROXY_HOST}:${env.PROXY_PORT}`
     )
